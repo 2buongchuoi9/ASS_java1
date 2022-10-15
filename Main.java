@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
- 
+
 public class Main {
     static Scanner sc = new Scanner(System.in);
     public static List<NhanVien> listNV = new ArrayList<>();
@@ -31,32 +31,45 @@ public class Main {
                     break;
                 case 2:
                     xuatDuLieu();
+                    cho();
                     break;
                 case 3:
                     timNVTheoID();
+                    cho();
                     break;
                 case 4:
                     xoaTheoID();
+                    cho();
                     break;
                 case 5:
                     suaTheoID();
+                    cho();
                     break;
                 case 6:
                     timTheoLuong();
+                    cho();
                     break;
                 case 7:
                     sapXepTheoTen();
+                    cho();
                     break;
                 case 8:
                     sapXepTheoThuNhap();
+                    cho();
                     break;
                 case 9:
                     top5ThuNhap();
+                    cho();
                     break;
                 default:
                     break;
             }
         } while (choose != 0);
+    }
+
+    private static void cho() {
+        System.out.print("Press \"ENTER\" to continue...");
+        sc.nextLine();
     }
 
     private static void top5ThuNhap() {
@@ -243,16 +256,20 @@ public class Main {
     }
 
     static void menu() {
-        System.out.println("1. Nhập thông tin nhân viên");
-        System.out.println("2. xuất thông tin nhân viên");
-        System.out.println("3. Tìm nhân viên theo mã nhân viên");
-        System.out.println("4. Xóa nhân viên theo mã nhân viên");
-        System.out.println("5. Cập nhật thông tin nhân viên theo mã");
-        System.out.println("6. Tìm nhân viên theo khoảng lương");
-        System.out.println("7. Sắp xếp nhân viên theo A->Z");
-        System.out.println("8. Sắp xếp nhân viên theo thu nhập");
-        System.out.println("9. Hiển thị top 5 nhân viên có thu nhập cao nhất");
-        System.out.println("0. thoát!!!");
-        System.out.print("Mời chọn: ");
+        System.out.println();
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                                      MAIN MENU");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-45s%-45s%-45s\n", "1. Nhập thông tin nhân viên", "4. Xóa nhân viên theo mã nhân viên",
+                "7. Sắp xếp nhân viên theo A->Z");
+        System.out.printf("%-45s%-45s%-45s\n", "2. xuất thông tin nhân viên", "5. Cập nhật thông tin nhân viên theo mã",
+                "8. Sắp xếp nhân viên theo thu nhập");
+        System.out.printf("%-45s%-45s%-45s\n", "3. Tìm nhân viên theo mã nhân viên",
+                "6. Tìm nhân viên theo khoảng lương",
+                "9. Top 5 nhân viên có thu nhập cao nhất");
+        System.out.printf("%-45s\n", "0. Thoát");
+        System.out.print("\nChọn chức năng: ");
     }
 }

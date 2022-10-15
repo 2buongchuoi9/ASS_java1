@@ -41,30 +41,27 @@ public class NhanVien implements SuaThongTinNhanVien {
                     sualuong();
                     break;
                 case 4:
-                    int suaLoai;
-                    do {
-                        System.out.println("1. Hành chính -> Tiếp thị");
-                        System.out.println("2. Hành chính -> Trưởng phòng");
-                        System.out.println("0. Quay lại");
-                        System.out.print("Mời chọn: ");
-                        suaLoai = Integer.parseInt(sc.nextLine());
-                        switch (suaLoai) {
-                            case 0:
-                                System.out.println("Bạn đã trở về mmenu chính");
-                                break;
-                            case 1:
-                                nVien = NhanVien_Factory.getNhanVien(this, "TT");
-                                dem++;
-                                break;
-                            case 2:
-                                nVien = NhanVien_Factory.getNhanVien(this, "TP");
-                                dem++;
-                                break;
-                            default:
-                                System.out.println("vui lòng chọn 0->2!!! Chọn lại: ");
-                                break;
-                        }
-                    } while (suaLoai != 0);
+                    System.out.println("1. Hành chính -> Tiếp thị");
+                    System.out.println("2. Hành chính -> Trưởng phòng");
+                    System.out.println("0. Quay lại");
+                    System.out.print("Mời chọn: ");
+                    int suaLoai = Integer.parseInt(sc.nextLine());
+                    switch (suaLoai) {
+                        case 0:
+                            System.out.println("Bạn đã trở về mmenu chính");
+                            break;
+                        case 1:
+                            nVien = NhanVien_Factory.getNhanVien(this, "TT");
+                            dem++;
+                            break;
+                        case 2:
+                            nVien = NhanVien_Factory.getNhanVien(this, "TP");
+                            dem++;
+                            break;
+                        default:
+                            System.out.println("vui lòng chọn 0->2!!! Chọn lại: ");
+                            break;
+                    }
                     break;
                 default:
                     System.out.println("Vui lòng chọn lại 0->4");
