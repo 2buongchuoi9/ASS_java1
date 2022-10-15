@@ -11,12 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
         listNV.add(new NhanVien("Tuấn Vũ", "HC005", 8000));
-        listNV.add(new TiepThi("Quốc Dũng", "TT008", 8000, 5000, 0.3));
+        listNV.add(new TiepThi("Quốc Dũng", "TT008", 10000, 50000, 5));
         listNV.add(new NhanVien("Xuân Hải", "HC004", 5000));
-        listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 500, 0.3));
+        listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 50000, 7));
+        listNV.add(new TruongPhong("Thanh Tùng", "TP080", 10000, 6000));
         listNV.add(new NhanVien("Quốc Diện", "HC002", 6000));
-        listNV.add(new TruongPhong("Thành Tôn", "TP000", 100, 300));
-        listNV.add(new NhanVien("Khánh Hoàng", "HC001", 5960));
+        listNV.add(new TruongPhong("Thành Tôn", "TP000", 20000, 900));
+        listNV.add(new NhanVien("Khánh Hoàng", "HC001", 9960));
 
         int choose;
         do {
@@ -35,11 +36,9 @@ public class Main {
                     break;
                 case 3:
                     timNVTheoID();
-                    cho();
                     break;
                 case 4:
                     xoaTheoID();
-                    cho();
                     break;
                 case 5:
                     suaTheoID();
@@ -47,7 +46,6 @@ public class Main {
                     break;
                 case 6:
                     timTheoLuong();
-                    cho();
                     break;
                 case 7:
                     sapXepTheoTen();
@@ -112,7 +110,7 @@ public class Main {
             }
             if (dem == 0)
                 System.out.print("Không tìm thấy nhân viên nào có khoảng lương " + minLuong + "->" + maxLuong);
-            System.out.print("Bạn có muốn nhập tiếp: ");
+            System.out.print("Bạn có muốn tìm tiếp: ");
         } while (sc.nextLine().equalsIgnoreCase("Y"));
     }
 
@@ -130,7 +128,7 @@ public class Main {
                 for (int i = 0; i < listNV.size(); i++) {
                     if (!(listNV.get(i) instanceof TruongPhong) && !(listNV.get(i) instanceof TiepThi)) {
                         if (dem == 0) {
-                            System.out.println("\t Nhân viên hành chính");
+                            System.out.println("\t NHÂN VIÊN HÀNH CHÍNH");
                             NhanVien.tieuDeHanhChinh();
                             dem++;
                         }
@@ -142,7 +140,7 @@ public class Main {
                 for (int i = 0; i < listNV.size(); i++) {
                     if (listNV.get(i) instanceof TiepThi) {
                         if (dem == 0) {
-                            System.out.println("\t Nhân viên Tiếp thị");
+                            System.out.println("\t NHÂN VIÊN TIẾP THỊ");
                             TiepThi.tieuDeTiepThi();
                             dem++;
                         }
@@ -154,7 +152,7 @@ public class Main {
                 for (int i = 0; i < listNV.size(); i++) {
                     if (listNV.get(i) instanceof TruongPhong) {
                         if (dem == 0) {
-                            System.out.println("\t Nhân viên Trưởng phòng");
+                            System.out.println("\t NHÂN VIÊN TRƯỞNG PHÒNG");
                             TruongPhong.tieuDeTruongPhong();
                             dem++;
                         }

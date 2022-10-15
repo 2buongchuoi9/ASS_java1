@@ -19,7 +19,7 @@ public class TiepThi extends NhanVien {
         NhanVien nVien = new NhanVien();
         int chon, dem = 0;
         do {
-            System.out.println("0. Trở về menu chính");
+            System.out.println("\n0. Trở về menu chính");
             System.out.println("1. Sửa mã nhân viên");
             System.out.println("2. Sửa tên nhân viên");
             System.out.println("3. Sửa Lương nhân viên");
@@ -48,30 +48,27 @@ public class TiepThi extends NhanVien {
                     suaHoaHong();
                     break;
                 case 6:
-                    int suaLoai;
-                    do {
-                        System.out.println("1. Tiếp thị -> Trưởng phòng");
-                        System.out.println("2. Tiếp thị -> Hành chính");
-                        System.out.println("0. Quay lại");
-                        System.out.print("Mời chọn: ");
-                        suaLoai = Integer.parseInt(sc.nextLine());
-                        switch (suaLoai) {
-                            case 0:
-                                System.out.println("Bạn đã trở về menu");
-                                break;
-                            case 1:
-                                nVien = NhanVien_Factory.getNhanVien(this, "TP");
-                                dem++;
-                                break;
-                            case 2:
-                                nVien = NhanVien_Factory.getNhanVien(this, "HC");
-                                dem++;
-                                break;
-                            default:
-                                System.out.println("vui lòng chọn 0->2!!! Chọn lại: ");
-                                break;
-                        }
-                    } while (suaLoai != 0);
+                    System.out.println("1. Tiếp thị -> Trưởng phòng");
+                    System.out.println("2. Tiếp thị -> Hành chính");
+                    System.out.println("0. Quay lại");
+                    System.out.print("Mời chọn: ");
+                    int suaLoai = Integer.parseInt(sc.nextLine());
+                    switch (suaLoai) {
+                        case 0:
+                            System.out.println("Bạn đã trở về menu");
+                            break;
+                        case 1:
+                            nVien = NhanVien_Factory.getNhanVien(this, "TP");
+                            dem++;
+                            break;
+                        case 2:
+                            nVien = NhanVien_Factory.getNhanVien(this, "HC");
+                            dem++;
+                            break;
+                        default:
+                            System.out.println("vui lòng chọn 0->2!!! Chọn lại: ");
+                            break;
+                    }
                     break;
                 default:
                     System.out.println("Vui lòng chọn lại 0->5");
@@ -93,13 +90,15 @@ public class TiepThi extends NhanVien {
     }
 
     public void xuat() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|%15s|\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
                 getThueTN(), getDoanhSo(), getHoaHong(), "");
     }
 
     public static void tieuDeTiepThi() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN",
-                "Doanh số", "Hoa hồng");
+        System.out.println("--------------------------------------------------------------------------------------------------");
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN",
+        "Doanh số", "Hoa hồng");
+        System.out.println("--------------------------------------------------------------------------------------------------");
     }
 
     @Override
@@ -140,11 +139,11 @@ public class TiepThi extends NhanVien {
     }
 
     public boolean setHoaHong(double hoaHong) {
-        if (hoaHong < 1) {
+        if (hoaHong < 100) {
             this.hoaHong = hoaHong;
             return true;
         }
-        System.out.print("Hoa hồng đơn vị phần trăm và phải nhỏ hơn 1. Mời nhập lại: ");
+        System.out.print("Hoa hồng đơn vị phần trăm và phải nhỏ hơn 100. Mời nhập lại: ");
         return false;
     }
 }

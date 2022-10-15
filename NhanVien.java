@@ -20,7 +20,7 @@ public class NhanVien implements SuaThongTinNhanVien {
         NhanVien nVien = new NhanVien();
         int chon, dem = 0;
         do {
-            System.out.println("0. Trở về menu chính");
+            System.out.println("\n0. Trở về menu chính");
             System.out.println("1. Sửa mã nhân viên");
             System.out.println("2. Sửa tên nhân viên");
             System.out.println("3. Sửa Lương nhân viên");
@@ -80,26 +80,32 @@ public class NhanVien implements SuaThongTinNhanVien {
         System.out.print("Nhập mã nhân viên(mã nhân viên là duy nhất và đúng định dạng): ");
         while (!setMaNV(sc.nextLine()))
             ;
-        System.out.print("Nhập lương: ");
+        System.out.print("Nhập lương(đơn vị nghìn VND): ");
         setLuong(Double.parseDouble(sc.nextLine()));
     }
 
     public static void tieuDe() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|%15s|\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN",
+        System.out.println(
+                "--------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN",
                 "Doanh số", "Hoa hồng", "Trách nhiệm");
+        System.out.println(
+                "--------------------------------------------------------------------------------------------------------------------");
     }
 
     public void xuat() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|%15s|%15s|%15s|\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
                 getThueTN(), "", "", "");
     }
 
     public static void tieuDeHanhChinh() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN");
+        System.out.println("--------------------------------------------------------------------");
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN");
+        System.out.println("--------------------------------------------------------------------");
     }
 
     public void xuatHanhChinh() {
-        System.out.printf("|%15s|%15s|%15s|%15s|%15s|\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
+        System.out.printf("%-15s%-15s%-15s%-15s%-15s\n", getTen(), getMaNV(), getLuong(), getThuNhap(),
                 getThueTN());
     }
 

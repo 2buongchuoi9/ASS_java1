@@ -16,15 +16,16 @@ public class NhanVien_Factory {
                 return i;
             TiepThi tt = new TiepThi();
             tt.nhapRiengTiepThi();
-            return new TiepThi(i.getTen(), i.getMaNV(), i.getLuong(), tt.getDoanhSo(), tt.getHoaHong());
+            return new TiepThi(i.getTen(), "TT" + i.getMaNV().substring(2), i.getLuong(), tt.getDoanhSo(),
+                    tt.getHoaHong());
         } else if (loai.equals("TP")) {
             if (i instanceof TruongPhong)
                 return i;
             TruongPhong tp = new TruongPhong();
             tp.nhapRiengTruongPhong();
-            return new TruongPhong(i.getTen(), i.getMaNV(), i.getLuong(), tp.getTrachNhiem());
+            return new TruongPhong(i.getTen(), "TP" + i.getMaNV().substring(2), i.getLuong(), tp.getTrachNhiem());
         } else if (loai.equals("HC")) {
-            return new NhanVien(i.getTen(), i.getMaNV(), i.getLuong());
+            return new NhanVien(i.getTen(), "HC" + i.getMaNV().substring(2), i.getLuong());
         } else
             return i;
     }
