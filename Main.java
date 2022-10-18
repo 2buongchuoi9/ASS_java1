@@ -158,7 +158,7 @@ public class Main {
                         tong++;
                     }
                 }
-                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên hành chính");
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên hành chính(đơn vị ngìn vnd)");
                 // System.out.println("\t\tTỔNG: " + tong + " nhân viên hành chính\n");
                 tong = 0;
                 dem = 0;
@@ -173,7 +173,7 @@ public class Main {
                         tong++;
                     }
                 }
-                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên tiếp thị");
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên tiếp thị(đơn vị ngìn vnd)");
                 dem = 0;
                 tong = 0;
                 for (int i = 0; i < listNV.size(); i++) {
@@ -187,7 +187,7 @@ public class Main {
                         tong++;
                     }
                 }
-                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên trưởng phòng");
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên trưởng phòng(đơn vị ngìn vnd)");
                 tong = 0;
                 dem = 0;
             } else if (chon == 2) {
@@ -203,7 +203,7 @@ public class Main {
                         tong++;
                     }
                 }
-                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên");
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên(đơn vị ngìn vnd)");
             } else {
                 System.out.print("Vui lòng chọn 1 hoặc 2!!! chọn lại: ");
             }

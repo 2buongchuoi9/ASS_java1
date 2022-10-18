@@ -9,6 +9,7 @@ public class NhanVien_Factory {
      * @param NhanVien i
      * @param loai     (HC, TT, TP)
      * @return NhanVien
+     * hàm dùng để đổi loại nhân viên ví dụ tiếp thị -> trưởng phòng
      */
     public static NhanVien getNhanVien(NhanVien i, String loai) {
         if (loai.equals("TT")) {

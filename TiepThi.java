@@ -84,7 +84,7 @@ public class TiepThi extends NhanVien {
         System.out.print("Nhập doanh số: ");
         setDoanhSo(Double.parseDouble(sc.nextLine()));
 
-        System.out.print("Nhập phần trăm Hoa Hồng(Đơn vị % và <1 ví dụ 0.3): ");
+        System.out.print("Nhập phần trăm Hoa Hồng(Đơn vị %): ");
         while (!setHoaHong(Double.parseDouble(sc.nextLine())))
             ;
     }
@@ -95,10 +95,12 @@ public class TiepThi extends NhanVien {
     }
 
     public static void tieuDeTiepThi() {
-        System.out.println("--------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "--------------------------------------------------------------------------------------------------");
         System.out.printf("%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "Tên", "Mã NV", "Lương", "Thu nhập", "Thuế TN",
-        "Doanh số", "Hoa hồng");
-        System.out.println("--------------------------------------------------------------------------------------------------");
+                "Doanh số", "Hoa hồng");
+        System.out.println(
+                "--------------------------------------------------------------------------------------------------");
     }
 
     @Override
@@ -135,12 +137,12 @@ public class TiepThi extends NhanVien {
     }
 
     public double getHoaHong() {
-        return hoaHong / 100;
+        return hoaHong;
     }
 
     public boolean setHoaHong(double hoaHong) {
         if (hoaHong < 100) {
-            this.hoaHong = hoaHong;
+            this.hoaHong = hoaHong / 100;
             return true;
         }
         System.out.print("Hoa hồng đơn vị phần trăm và phải nhỏ hơn 100. Mời nhập lại: ");
