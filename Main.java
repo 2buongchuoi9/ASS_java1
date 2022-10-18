@@ -10,12 +10,12 @@ public class Main {
     public static List<NhanVien> listNV = new ArrayList<>();
 
     public static void main(String[] args) {
-        // listNV.add(new NhanVien("Tuấn Vũ", "HC005", 8000));
-        // listNV.add(new TiepThi("Quốc Dũng", "TT008", 10000, 50000, 10));
+        listNV.add(new NhanVien("Tuấn Vũ", "HC005", 8000));
+        listNV.add(new TiepThi("Quốc Dũng", "TT008", 10000, 50000, 10));
         // listNV.add(new NhanVien("Xuân Hải", "HC004", 5000));
-        // listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 50000, 30));
-        // listNV.add(new TruongPhong("Thanh Tùng", "TP080", 10000, 6000));
-        // listNV.add(new NhanVien("Quốc Diện", "HC002", 6000));
+        listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 50000, 30));
+        listNV.add(new TruongPhong("Thanh Tùng", "TP080", 10000, 6000));
+        listNV.add(new NhanVien("Quốc Diện", "HC002", 6000));
         listNV.add(new TruongPhong("Thành Tôn", "TP000", 20000, 900));
         listNV.add(new NhanVien("Khánh Hoàng", "HC001", 9960));
         int choose;
