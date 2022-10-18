@@ -10,15 +10,14 @@ public class Main {
     public static List<NhanVien> listNV = new ArrayList<>();
 
     public static void main(String[] args) {
-        listNV.add(new NhanVien("Tuấn Vũ", "HC005", 8000));
-        listNV.add(new TiepThi("Quốc Dũng", "TT008", 10000, 50000, 5));
-        listNV.add(new NhanVien("Xuân Hải", "HC004", 5000));
-        listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 50000, 7));
-        listNV.add(new TruongPhong("Thanh Tùng", "TP080", 10000, 6000));
-        listNV.add(new NhanVien("Quốc Diện", "HC002", 6000));
+        // listNV.add(new NhanVien("Tuấn Vũ", "HC005", 8000));
+        // listNV.add(new TiepThi("Quốc Dũng", "TT008", 10000, 50000, 10));
+        // listNV.add(new NhanVien("Xuân Hải", "HC004", 5000));
+        // listNV.add(new TiepThi("Xuân Hưng", "TT003", 9000, 50000, 30));
+        // listNV.add(new TruongPhong("Thanh Tùng", "TP080", 10000, 6000));
+        // listNV.add(new NhanVien("Quốc Diện", "HC002", 6000));
         listNV.add(new TruongPhong("Thành Tôn", "TP000", 20000, 900));
         listNV.add(new NhanVien("Khánh Hoàng", "HC001", 9960));
-
         int choose;
         do {
             menu();
@@ -65,6 +64,24 @@ public class Main {
         } while (choose != 0);
     }
 
+    static void menu() {
+        System.out.println();
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                                      MAIN MENU");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-45s%-45s%-45s\n", "1. Nhập thông tin nhân viên", "4. Xóa nhân viên theo mã nhân viên",
+                "7. Sắp xếp nhân viên theo A->Z");
+        System.out.printf("%-45s%-45s%-45s\n", "2. xuất thông tin nhân viên", "5. Cập nhật thông tin nhân viên theo mã",
+                "8. Sắp xếp nhân viên theo thu nhập");
+        System.out.printf("%-45s%-45s%-45s\n", "3. Tìm nhân viên theo mã nhân viên",
+                "6. Tìm nhân viên theo khoảng lương",
+                "9. Top 5 nhân viên có thu nhập cao nhất");
+        System.out.printf("%-45s\n", "0. Thoát");
+        System.out.print("\nChọn chức năng: ");
+    }
+
     private static void cho() {
         System.out.print("Press \"ENTER\" to continue...");
         sc.nextLine();
@@ -74,20 +91,25 @@ public class Main {
         listNV.sort((o1, o2) -> Double.compare(o1.getThuNhap(), o2.getThuNhap()));
         System.out.println("Top 5 nhân viên có thu nhập cao nhất là: ");
         NhanVien.tieuDe();
-        for (int i = listNV.size() - 5; i < listNV.size(); i++) {
-            listNV.get(i).xuat();
-        }
+        if (listNV.size() < 6) {
+            listNV.forEach(i -> i.xuat());
+            System.out.println("TỔNG DANH SÁCH NHÂN VIÊN CHỈ CÓ " + listNV.size());
+        } else
+            for (int i = listNV.size() - 5; i < listNV.size(); i++) {
+                listNV.get(i).xuat();
+            }
     }
 
     private static void sapXepTheoThuNhap() {
         listNV.sort((o1, o2) -> Double.compare(o1.getThuNhap(), o2.getThuNhap()));
+        System.out.println("Danh sách nhân viên sau khi sắp xếp theo thu nhập tăng dần: ");
         NhanVien.tieuDe();
         listNV.forEach(i -> i.xuat());
     }
 
     private static void sapXepTheoTen() {
         listNV.sort((o1, o2) -> o1.getLastName().compareTo(o2.getLastName()));
-        System.out.println("Danh sách sinh viên sau sắp xếp theo tên(Tên khác với họ và tên): ");
+        System.out.println("Danh sách nhân viên sau sắp xếp theo tên(Tên khác với họ và tên): ");
         NhanVien.tieuDe();
         listNV.forEach(i -> i.xuat());
     }
@@ -109,8 +131,8 @@ public class Main {
                 }
             }
             if (dem == 0)
-                System.out.print("Không tìm thấy nhân viên nào có khoảng lương " + minLuong + "->" + maxLuong);
-            System.out.print("Bạn có muốn tìm tiếp: ");
+                System.out.println("Không tìm thấy nhân viên nào có khoảng lương " + minLuong + "->" + maxLuong);
+            System.out.print("Bạn có muốn tìm tiếp(Y/N): ");
         } while (sc.nextLine().equalsIgnoreCase("Y"));
     }
 
@@ -118,7 +140,7 @@ public class Main {
         // Mặc định sắp xếp ưu tiên: tên->Lương theo hướng giảm dần
         listNV.sort(Comparator.comparing(i -> ((NhanVien) i).getLastName())
                 .thenComparingDouble(i -> ((NhanVien) i).getThuNhap()));
-        int dem = 0, chon;
+        int dem = 0, tong = 0, chon;
         do {
             System.out.println("1. Xuất thông tin theo chức vụ");
             System.out.println("2. Xuất toàn bộ thông tin nhân viên");
@@ -128,45 +150,60 @@ public class Main {
                 for (int i = 0; i < listNV.size(); i++) {
                     if (!(listNV.get(i) instanceof TruongPhong) && !(listNV.get(i) instanceof TiepThi)) {
                         if (dem == 0) {
-                            System.out.println("\t NHÂN VIÊN HÀNH CHÍNH");
+                            System.out.printf("%40s\n", "NHÂN VIÊN HÀNH CHÍNH");
                             NhanVien.tieuDeHanhChinh();
                             dem++;
                         }
                         listNV.get(i).xuat();
+                        tong++;
                     }
                 }
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên hành chính");
+                // System.out.println("\t\tTỔNG: " + tong + " nhân viên hành chính\n");
+                tong = 0;
                 dem = 0;
-                System.out.println();
                 for (int i = 0; i < listNV.size(); i++) {
                     if (listNV.get(i) instanceof TiepThi) {
                         if (dem == 0) {
-                            System.out.println("\t NHÂN VIÊN TIẾP THỊ");
+                            System.out.printf("%35s\n", "NHÂN VIÊN TIẾP THỊ");
                             TiepThi.tieuDeTiepThi();
                             dem++;
                         }
                         ((TiepThi) listNV.get(i)).xuat();
+                        tong++;
                     }
                 }
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên tiếp thị");
                 dem = 0;
-                System.out.println();
+                tong = 0;
                 for (int i = 0; i < listNV.size(); i++) {
                     if (listNV.get(i) instanceof TruongPhong) {
                         if (dem == 0) {
-                            System.out.println("\t NHÂN VIÊN TRƯỞNG PHÒNG");
+                            System.out.printf("%30s\n", "NHÂN VIÊN TRƯỞNG PHÒNG");
                             TruongPhong.tieuDeTruongPhong();
                             dem++;
                         }
                         ((TruongPhong) listNV.get(i)).xuatTruongPhong();
+                        tong++;
                     }
                 }
-                System.out.println();
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên trưởng phòng");
+                tong = 0;
+                dem = 0;
             } else if (chon == 2) {
-                NhanVien.tieuDe();
-                listNV.forEach(i -> {
+                for (NhanVien i : listNV) {
                     if (listNV.isEmpty())
                         System.out.println("Danh sách nhân viên trống");
-                    i.xuat();
-                });
+                    else {
+                        if (dem == 0) {
+                            NhanVien.tieuDe();
+                            dem++;
+                        }
+                        i.xuat();
+                        tong++;
+                    }
+                }
+                System.out.printf("\n%90s\n", "TỔNG: " + tong + " nhân viên");
             } else {
                 System.out.print("Vui lòng chọn 1 hoặc 2!!! chọn lại: ");
             }
@@ -199,11 +236,11 @@ public class Main {
                     System.out.println("Đã xóa nhân viên bên dưới: ");
                     NhanVien.tieuDe();
                     i.xuat();
-                    break;
-                } else
                     dem++;
+                    break;
+                }
             }
-            if (dem > 0)
+            if (dem == 0)
                 System.out.println("Không tìm thấy id nhân viên cần xóa");
             System.out.print("Bạn có muốn xóa nhân viên tiếp không(Y/N): ");
         } while (sc.nextLine().equalsIgnoreCase("y"));
@@ -218,11 +255,11 @@ public class Main {
                 if (timId.equals(i.getMaNV())) {
                     NhanVien.tieuDe();
                     i.xuat();
-                    break;
-                } else
                     dem++;
+                    break;
+                }
             }
-            if (dem > 0)
+            if (dem == 0)
                 System.out.println("Không tìm thấy id nhân viên");
             System.out.print("Bạn có muốn tìm tiếp không(Y/N): ");
         } while (sc.nextLine().equalsIgnoreCase("Y"));
@@ -251,23 +288,5 @@ public class Main {
 
         } while (loai != 1 || loai != 2 || loai != 3);
         return loai == 1 ? new NhanVien() : loai == 2 ? new TiepThi() : new TruongPhong();
-    }
-
-    static void menu() {
-        System.out.println();
-        System.out.println(
-                "-------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("                                                      MAIN MENU");
-        System.out.println(
-                "-------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-45s%-45s%-45s\n", "1. Nhập thông tin nhân viên", "4. Xóa nhân viên theo mã nhân viên",
-                "7. Sắp xếp nhân viên theo A->Z");
-        System.out.printf("%-45s%-45s%-45s\n", "2. xuất thông tin nhân viên", "5. Cập nhật thông tin nhân viên theo mã",
-                "8. Sắp xếp nhân viên theo thu nhập");
-        System.out.printf("%-45s%-45s%-45s\n", "3. Tìm nhân viên theo mã nhân viên",
-                "6. Tìm nhân viên theo khoảng lương",
-                "9. Top 5 nhân viên có thu nhập cao nhất");
-        System.out.printf("%-45s\n", "0. Thoát");
-        System.out.print("\nChọn chức năng: ");
     }
 }

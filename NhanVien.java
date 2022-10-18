@@ -11,7 +11,7 @@ public class NhanVien implements SuaThongTinNhanVien {
     private String ten, maNV;
     private double luong;
 
-    private static List<String> listMaNV = new ArrayList<>();
+    public static List<String> listMaNV = new ArrayList<>();
 
     public static final Scanner sc = new Scanner(System.in, "utf8");
 
@@ -135,12 +135,14 @@ public class NhanVien implements SuaThongTinNhanVien {
     }
 
     public NhanVien() {
+        // listMaNV.add(this.maNV);
     }
 
     public NhanVien(String ten, String maNV, double luong) {
         this.ten = ten;
         this.maNV = maNV;
         this.luong = luong;
+        listMaNV.add(maNV);
     }
 
     public String getLastName() {
